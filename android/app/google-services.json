@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "709874140818",
+    "firebase_url": "https://ungmonitorcovid.firebaseio.com",
+    "project_id": "ungmonitorcovid",
+    "storage_bucket": "ungmonitorcovid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709874140818:android:2eca50c14b8fa896a2884b",
+        "android_client_info": {
+          "package_name": "com.flutterthailand.ungmonitorcovid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709874140818-0bnv0603n09j6e7i8b4psfvb2a2b68q8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdcLare2cvPdTQY_wTMkE7pJHFQNlLAyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709874140818-0bnv0603n09j6e7i8b4psfvb2a2b68q8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "709874140818-26nagk0jhhg869tjonj0844ek45cns1j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterthailand.ungmonitorcovid"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
