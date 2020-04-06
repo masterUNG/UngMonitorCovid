@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:ungmonitorcovid/models/country_model.dart';
+import 'package:ungmonitorcovid/utility/my_style.dart';
 
 class ShowCountry extends StatefulWidget {
   @override
@@ -39,28 +40,80 @@ class _ShowCountryState extends State<ShowCountry> {
     return ListView.builder(
         itemCount: countryModels.length,
         itemBuilder: (BuildContext buildContext, int index) {
-          return Row(
-            children: <Widget>[
-              showFlag(index),
-              showText(index)
-            ],
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: index % 2 == 0
+                    ? <Color>[Colors.white, Colors.green.shade900]
+                    : <Color>[Colors.white, Colors.green.shade300],
+              ),
+            ),
+            child: Row(
+              children: <Widget>[showFlag(index), showText(index)],
+            ),
           );
         });
   }
 
-  Widget showText(int index) => Column(
-    children: <Widget>[
-      Text(countryModels[index].country),Text(countryModels[index].cases.toString())
-    ],
-  );
+  Widget showText(int index) => Container(
+        padding: EdgeInsets.all(10.0),
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: Column(
+          children: <Widget>[
+            showNameCountry(index),
+            showCases(index),
+            showTodayCases(index),
+          ],
+        ),
+      );
+
+  Widget showCases(int index) => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(
+            'Cases = ${countryModels[index].cases.toString()}',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: index % 2 == 0 ? Colors.white54 : MyStyle().primaryColor,
+            ),
+          ),
+        ],
+      );
+
+  Widget showTodayCases(int index) => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(
+            'Today Cases = ${countryModels[index].todayCases.toString()}',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: index % 2 == 0 ? Colors.white : MyStyle().darkColor,
+            ),
+          ),
+        ],
+      );
+
+  Widget showNameCountry(int index) => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(
+            countryModels[index].country,
+            style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+              color: index % 2 == 0 ? Colors.white : MyStyle().darkColor,
+            ),
+          ),
+        ],
+      );
 
   Widget showFlag(int index) {
-
     String urlFlag = countryModels[index].countryInfo.flag.toString();
 
-    return Container(padding: EdgeInsets.all(10.0),
-              width: 150.0,
-              child: Image.network(urlFlag),
-            );
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      width: MediaQuery.of(context).size.width * 0.4,
+      child: Image.network(urlFlag),
+    );
   }
 }
