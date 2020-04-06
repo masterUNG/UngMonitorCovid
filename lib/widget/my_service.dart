@@ -14,7 +14,7 @@ class MyService extends StatefulWidget {
 class _MyServiceState extends State<MyService> {
   // Field
   String nameLogin, urlLogin;
-  Widget currentWidget = ShowCountry();
+  Widget currentWidget = ShowTotal();
 
   // Method
 
