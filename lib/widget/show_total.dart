@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
+import 'package:ungmonitorcovid/models/total_model.dart';
+import 'package:ungmonitorcovid/utility/my_style.dart';
 
 class ShowTotal extends StatefulWidget {
   @override
@@ -10,26 +9,25 @@ class ShowTotal extends StatefulWidget {
 }
 
 class _ShowTotalState extends State<ShowTotal> {
-
   // Filed
+  TotalModel model;
 
   // Method
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     readData();
   }
 
-  Future<void> readData()async{
-
+  Future<void> readData() async {
     String url = 'https://corona.lmao.ninja/all';
 
     try {
-
       Response response = await Dio().get(url);
-      var result = json.decode(response.data);
-      print('result ==>> $result');
-      
+      setState(() {
+        model = TotalModel.fromJson(response.data);
+      });
+      print('Cases ==> ${model.cases}');
     } catch (e) {
       print('e on showTotal ${e.toString()}');
     }
@@ -37,8 +35,24 @@ class _ShowTotalState extends State<ShowTotal> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'This is Total'
+    return Center(
+      child: model == null ? CircularProgressIndicator() : showContent(),
+    );
+  }
+
+  Column showContent() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[showCase()],
+    );
+  }
+
+  Widget showCase() {
+    return Container(
+      child: MyStyle().showCard(
+        'Cases',
+        model.cases.toString(),
+      ),
     );
   }
 }
