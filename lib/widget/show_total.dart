@@ -33,6 +33,24 @@ class _ShowTotalState extends State<ShowTotal> {
     }
   }
 
+  Widget showCard(String title, String message, Color color) {
+    return Container(
+      height: 120.0,
+      child: Card(
+        color: color,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(title),
+              Text(message),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -43,7 +61,26 @@ class _ShowTotalState extends State<ShowTotal> {
   Column showContent() {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[showCase()],
+      children: <Widget>[
+        showCard('Total Case', model.cases.toString(), Colors.yellow),
+        showOther()
+      ],
+    );
+  }
+
+  Widget showOther() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Expanded(
+            child: showCard(
+                'Today Case', model.todayCases.toString(), Colors.blue)),
+        Expanded(
+            child: showCard('Deaths', model.deaths.toString(), Colors.purple)),
+        Expanded(
+            child: showCard(
+                'Today Deaths', model.todayDeaths.toString(), Colors.brown)),
+      ],
     );
   }
 

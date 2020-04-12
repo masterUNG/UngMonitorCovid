@@ -6,7 +6,7 @@ class MyStyle {
   Color darkColor = Color.fromARGB(0xff, 0x6c, 0x6f, 0x00);
 
   Widget showCard(String title, String message) {
-    return Expanded(
+    return Expanded(flex: 1,
       child: Container(
         constraints: BoxConstraints.expand(),
         child: Card(
